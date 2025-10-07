@@ -1,34 +1,34 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.SummonersBook;
 import seedu.address.model.player.Player;
 
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPlayer("John", "Doe").build();}
+ *     {@code SummonersBook ab = new SummonersBookBuilder().withPlayer("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class SummonersBookBuilder {
 
-    private AddressBook addressBook;
+    private SummonersBook addressBook;
 
-    public AddressBookBuilder() {
-        addressBook = new AddressBook();
+    public SummonersBookBuilder() {
+        addressBook = new SummonersBook();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public SummonersBookBuilder(SummonersBook addressBook) {
         this.addressBook = addressBook;
     }
 
     /**
-     * Adds a new {@code Player} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Player} to the {@code SummonersBook} that we are building.
      */
-    public AddressBookBuilder withPlayer(Player player) {
+    public SummonersBookBuilder withPlayer(Player player) {
         addressBook.addPlayer(player);
         return this;
     }
 
-    public AddressBook build() {
+    public SummonersBook build() {
         return addressBook;
     }
 }

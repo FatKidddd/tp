@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPlayers.ALICE;
-import static seedu.address.testutil.TypicalPlayers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPlayers.getTypicalSummonersBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,9 +22,9 @@ import seedu.address.model.player.Player;
 import seedu.address.model.player.exceptions.DuplicatePlayerException;
 import seedu.address.testutil.PlayerBuilder;
 
-public class AddressBookTest {
+public class SummonersBookTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final SummonersBook addressBook = new SummonersBook();
 
     @Test
     public void constructor() {
@@ -37,8 +37,8 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlySummonersBook_replacesData() {
+        SummonersBook newData = getTypicalSummonersBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -49,7 +49,7 @@ public class AddressBookTest {
         Player editedAlice = new PlayerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Player> newPlayers = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPlayers);
+        SummonersBookStub newData = new SummonersBookStub(newPlayers);
 
         assertThrows(DuplicatePlayerException.class, () -> addressBook.resetData(newData));
     }
@@ -60,18 +60,18 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPlayer_playerNotInAddressBook_returnsFalse() {
+    public void hasPlayer_playerNotInSummonersBook_returnsFalse() {
         assertFalse(addressBook.hasPlayer(ALICE));
     }
 
     @Test
-    public void hasPlayer_playerInAddressBook_returnsTrue() {
+    public void hasPlayer_playerInSummonersBook_returnsTrue() {
         addressBook.addPlayer(ALICE);
         assertTrue(addressBook.hasPlayer(ALICE));
     }
 
     @Test
-    public void hasPlayer_playerWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPlayer_playerWithSameIdentityFieldsInSummonersBook_returnsTrue() {
         addressBook.addPlayer(ALICE);
         Player editedAlice = new PlayerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -85,17 +85,17 @@ public class AddressBookTest {
 
     @Test
     public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{players=" + addressBook.getPlayerList() + "}";
+        String expected = SummonersBook.class.getCanonicalName() + "{players=" + addressBook.getPlayerList() + "}";
         assertEquals(expected, addressBook.toString());
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose players list can violate interface constraints.
+     * A stub ReadOnlySummonersBook whose players list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class SummonersBookStub implements ReadOnlySummonersBook {
         private final ObservableList<Player> players = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Player> players) {
+        SummonersBookStub(Collection<Player> players) {
             this.players.setAll(players);
         }
 

@@ -13,7 +13,7 @@ import seedu.address.model.player.UniquePlayerList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePlayer comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class SummonersBook implements ReadOnlySummonersBook {
 
     private final UniquePlayerList players;
 
@@ -28,12 +28,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         players = new UniquePlayerList();
     }
 
-    public AddressBook() {}
+    public SummonersBook() {}
 
     /**
-     * Creates an AddressBook using the Players in the {@code toBeCopied}
+     * Creates an SummonersBook using the Players in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public SummonersBook(ReadOnlySummonersBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -49,9 +49,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code SummonersBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlySummonersBook newData) {
         requireNonNull(newData);
 
         setPlayers(newData.getPlayerList());
@@ -87,7 +87,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code SummonersBook}.
      * {@code key} must exist in the address book.
      */
     public void removePlayer(Player key) {
@@ -115,12 +115,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddressBook)) {
+        if (!(other instanceof SummonersBook)) {
             return false;
         }
 
-        AddressBook otherAddressBook = (AddressBook) other;
-        return players.equals(otherAddressBook.players);
+        SummonersBook otherSummonersBook = (SummonersBook) other;
+        return players.equals(otherSummonersBook.players);
     }
 
     @Override

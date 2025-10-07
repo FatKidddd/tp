@@ -19,25 +19,25 @@ import seedu.address.model.player.Player;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final SummonersBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Player> filteredPlayers;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlySummonersBook addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.addressBook = new SummonersBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPlayers = new FilteredList<>(this.addressBook.getPlayerList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new SummonersBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,25 +65,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getSummonersBookFilePath() {
+        return userPrefs.getSummonersBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setSummonersBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setSummonersBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== SummonersBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+    public void setSummonersBook(ReadOnlySummonersBook addressBook) {
         this.addressBook.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlySummonersBook getSummonersBook() {
         return addressBook;
     }
 
@@ -115,7 +115,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Player} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedSummonersBook}
      */
     @Override
     public ObservableList<Player> getFilteredPlayerList() {

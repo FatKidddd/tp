@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPlayers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPlayers.getTypicalSummonersBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,14 +23,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalSummonersBook(), new UserPrefs());
     }
 
     @Test
     public void execute_newPlayer_success() {
         Player validPlayer = new PlayerBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSummonersBook(), new UserPrefs());
         expectedModel.addPlayer(validPlayer);
 
         assertCommandSuccess(new AddCommand(validPlayer), model,
@@ -40,7 +40,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePlayer_throwsCommandException() {
-        Player playerInList = model.getAddressBook().getPlayerList().get(0);
+        Player playerInList = model.getSummonersBook().getPlayerList().get(0);
         assertCommandFailure(new AddCommand(playerInList), model,
                 AddCommand.MESSAGE_DUPLICATE_player);
     }

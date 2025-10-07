@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPlayerAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_player;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_player;
-import static seedu.address.testutil.TypicalPlayers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPlayers.getTypicalSummonersBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ import seedu.address.model.player.Player;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSummonersBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,7 +35,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_player_SUCCESS,
                 Messages.format(playerToDelete));
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSummonersBook(), new UserPrefs());
         expectedModel.deletePlayer(playerToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -59,7 +59,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_player_SUCCESS,
                 Messages.format(playerToDelete));
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSummonersBook(), new UserPrefs());
         expectedModel.deletePlayer(playerToDelete);
         showNoPlayer(expectedModel);
 
@@ -72,7 +72,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_player;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPlayerList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSummonersBook().getPlayerList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 

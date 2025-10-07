@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.SummonersBook;
 import seedu.address.model.player.Player;
 
 /**
@@ -60,10 +60,10 @@ public class TypicalPlayers {
     private TypicalPlayers() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical players.
+     * Returns an {@code SummonersBook} with all the typical players.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static SummonersBook getTypicalSummonersBook() {
+        SummonersBook ab = new SummonersBook();
         for (Player player : getTypicalPlayers()) {
             ab.addPlayer(player);
         }

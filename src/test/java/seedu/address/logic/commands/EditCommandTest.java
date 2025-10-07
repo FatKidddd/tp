@@ -13,14 +13,14 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPlayerAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_player;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_player;
-import static seedu.address.testutil.TypicalPlayers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPlayers.getTypicalSummonersBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand.EditPlayerDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.model.SummonersBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -33,7 +33,7 @@ import seedu.address.testutil.PlayerBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSummonersBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -43,7 +43,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_player_SUCCESS, Messages.format(editedPlayer));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new SummonersBook(model.getSummonersBook()), new UserPrefs());
         expectedModel.setPlayer(model.getFilteredPlayerList().get(0), editedPlayer);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -64,7 +64,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_player_SUCCESS, Messages.format(editedPlayer));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new SummonersBook(model.getSummonersBook()), new UserPrefs());
         expectedModel.setPlayer(lastPlayer, editedPlayer);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -77,7 +77,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_player_SUCCESS, Messages.format(editedPlayer));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new SummonersBook(model.getSummonersBook()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -93,7 +93,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_player_SUCCESS, Messages.format(editedPlayer));
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new SummonersBook(model.getSummonersBook()), new UserPrefs());
         expectedModel.setPlayer(model.getFilteredPlayerList().get(0), editedPlayer);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -113,7 +113,7 @@ public class EditCommandTest {
         showPlayerAtIndex(model, INDEX_FIRST_player);
 
         // edit player in filtered list into a duplicate in address book
-        Player playerInList = model.getAddressBook().getPlayerList().get(INDEX_SECOND_player.getZeroBased());
+        Player playerInList = model.getSummonersBook().getPlayerList().get(INDEX_SECOND_player.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_player,
                 new EditPlayerDescriptorBuilder(playerInList).build());
 
@@ -138,7 +138,7 @@ public class EditCommandTest {
         showPlayerAtIndex(model, INDEX_FIRST_player);
         Index outOfBoundIndex = INDEX_SECOND_player;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPlayerList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSummonersBook().getPlayerList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditPlayerDescriptorBuilder().withName(VALID_NAME_BOB).build());

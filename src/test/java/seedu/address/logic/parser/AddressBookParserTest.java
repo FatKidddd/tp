@@ -29,9 +29,9 @@ import seedu.address.testutil.EditPlayerDescriptorBuilder;
 import seedu.address.testutil.PlayerBuilder;
 import seedu.address.testutil.PlayerUtil;
 
-public class AddressBookParserTest {
+public class SummonersBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final SummonersBookParser parser = new SummonersBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {

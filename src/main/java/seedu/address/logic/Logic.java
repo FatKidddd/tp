@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlySummonersBook;
 import seedu.address.model.player.Player;
 
 /**
@@ -24,11 +24,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the SummonersBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getSummonersBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlySummonersBook getSummonersBook();
 
     /** Returns an unmodifiable view of the filtered list of players */
     ObservableList<Player> getFilteredPlayerList();
@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getSummonersBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

@@ -10,37 +10,37 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.AddressBook;
+import seedu.address.model.SummonersBook;
 import seedu.address.testutil.TypicalPlayers;
 
-public class JsonSerializableAddressBookTest {
+public class JsonSerializableSummonersBookTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_playerS_FILE = TEST_DATA_FOLDER.resolve("typicalPlayersAddressBook.json");
-    private static final Path INVALID_player_FILE = TEST_DATA_FOLDER.resolve("invalidPlayerAddressBook.json");
-    private static final Path DUPLICATE_player_FILE = TEST_DATA_FOLDER.resolve("duplicatePlayerAddressBook.json");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableSummonersBookTest");
+    private static final Path TYPICAL_playerS_FILE = TEST_DATA_FOLDER.resolve("typicalPlayersSummonersBook.json");
+    private static final Path INVALID_player_FILE = TEST_DATA_FOLDER.resolve("invalidPlayerSummonersBook.json");
+    private static final Path DUPLICATE_player_FILE = TEST_DATA_FOLDER.resolve("duplicatePlayerSummonersBook.json");
 
     @Test
     public void toModelType_typicalPlayersFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_playerS_FILE,
-                JsonSerializableAddressBook.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPlayersAddressBook = TypicalPlayers.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalPlayersAddressBook);
+        JsonSerializableSummonersBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_playerS_FILE,
+                JsonSerializableSummonersBook.class).get();
+        SummonersBook addressBookFromFile = dataFromFile.toModelType();
+        SummonersBook typicalPlayersSummonersBook = TypicalPlayers.getTypicalSummonersBook();
+        assertEquals(addressBookFromFile, typicalPlayersSummonersBook);
     }
 
     @Test
     public void toModelType_invalidPlayerFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_player_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableSummonersBook dataFromFile = JsonUtil.readJsonFile(INVALID_player_FILE,
+                JsonSerializableSummonersBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicatePlayers_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_player_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_player,
+        JsonSerializableSummonersBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_player_FILE,
+                JsonSerializableSummonersBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableSummonersBook.MESSAGE_DUPLICATE_player,
                 dataFromFile::toModelType);
     }
 

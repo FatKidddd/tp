@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Player values as in TypicalPlayers#getTypicalAddressBook()",
+  "_comment": "SummonersBook save file which contains the same Player values as in TypicalPlayers#getTypicalSummonersBook()",
   "players" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
