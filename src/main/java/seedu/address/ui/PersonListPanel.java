@@ -8,40 +8,40 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Player;
 
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class PlayerListPanel extends UiPart<Region> {
+    private static final String FXML = "PlayerListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(PlayerListPanel.class);
 
     @FXML
-    private ListView<Person> personListView;
+    private ListView<Player> personListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code PlayerListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PlayerListPanel(ObservableList<Player> personList) {
         super(FXML);
         personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setCellFactory(listView -> new PlayerListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Player} using a {@code PlayerCard}.
      */
-    class PersonListViewCell extends ListCell<Person> {
+    class PlayerListViewCell extends ListCell<Player> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
+        protected void updateItem(Player person, boolean empty) {
             super.updateItem(person, empty);
 
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PlayerCard(person, getIndex() + 1).getRoot());
             }
         }
     }
