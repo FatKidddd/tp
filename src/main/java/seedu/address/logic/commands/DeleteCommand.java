@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_player_SUCCESS = "Deleted Player: %1$s";
+    public static final String MESSAGE_DELETE_PLAYER_SUCCESS = "Deleted Player: %1$s";
 
     private final Index targetIndex;
 
@@ -37,12 +37,12 @@ public class DeleteCommand extends Command {
         List<Player> lastShownList = model.getFilteredPlayerList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_player_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PLAYER_DISPLAYED_INDEX);
         }
 
         Player playerToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePlayer(playerToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_player_SUCCESS, Messages.format(playerToDelete)));
+        return new CommandResult(String.format(MESSAGE_DELETE_PLAYER_SUCCESS, Messages.format(playerToDelete)));
     }
 
     @Override

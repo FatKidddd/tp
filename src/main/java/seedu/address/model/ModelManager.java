@@ -101,7 +101,7 @@ public class ModelManager implements Model {
     @Override
     public void addPlayer(Player player) {
         addressBook.addPlayer(player);
-        updateFilteredPlayerList(PREDICATE_SHOW_ALL_playerS);
+        updateFilteredPlayerList(PREDICATE_SHOW_ALL_PLAYERS);
     }
 
     @Override

@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPlayerAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_player;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PLAYER;
 import static seedu.address.testutil.TypicalPlayers.getTypicalSummonersBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPlayerAtIndex(model, INDEX_FIRST_player);
+        showPlayerAtIndex(model, INDEX_FIRST_PLAYER);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

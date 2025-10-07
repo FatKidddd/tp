@@ -31,7 +31,8 @@ public class JsonSummonersBookStorageTest {
     }
 
     private java.util.Optional<ReadOnlySummonersBook> readSummonersBook(String filePath) throws Exception {
-        return new JsonSummonersBookStorage(Paths.get(filePath)).readSummonersBook(addToTestDataPathIfNotNull(filePath));
+        return new JsonSummonersBookStorage(Paths.get(filePath))
+            .readSummonersBook(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {

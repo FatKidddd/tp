@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_playerS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PLAYERS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -24,8 +24,8 @@ import seedu.address.model.Model;
 import seedu.address.model.player.Address;
 import seedu.address.model.player.Email;
 import seedu.address.model.player.Name;
-import seedu.address.model.player.Player;
 import seedu.address.model.player.Phone;
+import seedu.address.model.player.Player;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,9 +48,9 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_player_SUCCESS = "Edited Player: %1$s";
+    public static final String MESSAGE_EDIT_PLAYER_SUCCESS = "Edited Player: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_player = "This player already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PLAYER = "This player already exists in the address book.";
 
     private final Index index;
     private final EditPlayerDescriptor editPlayerDescriptor;
@@ -73,19 +73,19 @@ public class EditCommand extends Command {
         List<Player> lastShownList = model.getFilteredPlayerList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_player_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PLAYER_DISPLAYED_INDEX);
         }
 
         Player playerToEdit = lastShownList.get(index.getZeroBased());
         Player editedPlayer = createEditedPlayer(playerToEdit, editPlayerDescriptor);
 
         if (!playerToEdit.isSamePlayer(editedPlayer) && model.hasPlayer(editedPlayer)) {
-            throw new CommandException(MESSAGE_DUPLICATE_player);
+            throw new CommandException(MESSAGE_DUPLICATE_PLAYER);
         }
 
         model.setPlayer(playerToEdit, editedPlayer);
-        model.updateFilteredPlayerList(PREDICATE_SHOW_ALL_playerS);
-        return new CommandResult(String.format(MESSAGE_EDIT_player_SUCCESS, Messages.format(editedPlayer)));
+        model.updateFilteredPlayerList(PREDICATE_SHOW_ALL_PLAYERS);
+        return new CommandResult(String.format(MESSAGE_EDIT_PLAYER_SUCCESS, Messages.format(editedPlayer)));
     }
 
     /**

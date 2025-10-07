@@ -42,7 +42,7 @@ public class AddCommandIntegrationTest {
     public void execute_duplicatePlayer_throwsCommandException() {
         Player playerInList = model.getSummonersBook().getPlayerList().get(0);
         assertCommandFailure(new AddCommand(playerInList), model,
-                AddCommand.MESSAGE_DUPLICATE_player);
+                AddCommand.MESSAGE_DUPLICATE_PLAYER);
     }
 
 }

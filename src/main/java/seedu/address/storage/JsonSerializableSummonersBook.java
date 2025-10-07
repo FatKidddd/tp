@@ -19,7 +19,7 @@ import seedu.address.model.player.Player;
 @JsonRootName(value = "addressbook")
 class JsonSerializableSummonersBook {
 
-    public static final String MESSAGE_DUPLICATE_player = "Players list contains duplicate player(s).";
+    public static final String MESSAGE_DUPLICATE_PLAYER = "Players list contains duplicate player(s).";
 
     private final List<JsonAdaptedPlayer> players = new ArrayList<>();
 
@@ -50,7 +50,7 @@ class JsonSerializableSummonersBook {
         for (JsonAdaptedPlayer jsonAdaptedPlayer : players) {
             Player player = jsonAdaptedPlayer.toModelType();
             if (addressBook.hasPlayer(player)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_player);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PLAYER);
             }
             addressBook.addPlayer(player);
         }

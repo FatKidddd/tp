@@ -12,7 +12,7 @@ import seedu.address.model.player.Player;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Player> PREDICATE_SHOW_ALL_playerS = unused -> true;
+    Predicate<Player> PREDICATE_SHOW_ALL_PLAYERS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

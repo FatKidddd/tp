@@ -50,7 +50,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPlayer);
         ModelStub modelStub = new ModelStubWithPlayer(validPlayer);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_player, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PLAYER, () -> addCommand.execute(modelStub));
     }
 
     @Test
