@@ -16,7 +16,7 @@ import seedu.address.model.player.Player;
 /**
  * An Immutable SummonersBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "summonersbook")
 class JsonSerializableSummonersBook {
 
     public static final String MESSAGE_DUPLICATE_PLAYER = "Players list contains duplicate player(s).";
