@@ -15,8 +15,8 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.SummonersBook;
 import seedu.address.model.Model;
+import seedu.address.model.SummonersBook;
 import seedu.address.model.player.NameContainsKeywordsPredicate;
 import seedu.address.model.player.Player;
 import seedu.address.testutil.EditPlayerDescriptorBuilder;

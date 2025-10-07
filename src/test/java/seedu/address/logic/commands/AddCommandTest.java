@@ -18,10 +18,10 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.SummonersBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlySummonersBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.SummonersBook;
 import seedu.address.model.player.Player;
 import seedu.address.testutil.PlayerBuilder;
 

@@ -5,9 +5,9 @@ import static seedu.address.testutil.TypicalPlayers.getTypicalSummonersBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.SummonersBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.SummonersBook;
 import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
