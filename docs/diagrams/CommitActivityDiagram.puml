@@ -11,7 +11,7 @@ start
 if () then ([command commits SummonersBook])
     :Purge redundant states;
     :Save SummonersBook to
-    addressBookStateList;
+    summonersBookStateList;
 else ([else])
 endif
 stop

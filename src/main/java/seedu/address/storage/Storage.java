@@ -27,6 +27,6 @@ public interface Storage extends SummonersBookStorage, UserPrefsStorage {
     Optional<ReadOnlySummonersBook> readSummonersBook() throws DataLoadingException;
 
     @Override
-    void saveSummonersBook(ReadOnlySummonersBook addressBook) throws IOException;
+    void saveSummonersBook(ReadOnlySummonersBook summonersBook) throws IOException;
 
 }

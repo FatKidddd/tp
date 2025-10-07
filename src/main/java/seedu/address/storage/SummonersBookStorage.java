@@ -32,14 +32,14 @@ public interface SummonersBookStorage {
 
     /**
      * Saves the given {@link ReadOnlySummonersBook} to the storage.
-     * @param addressBook cannot be null.
+     * @param summonersBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveSummonersBook(ReadOnlySummonersBook addressBook) throws IOException;
+    void saveSummonersBook(ReadOnlySummonersBook summonersBook) throws IOException;
 
     /**
      * @see #saveSummonersBook(ReadOnlySummonersBook)
      */
-    void saveSummonersBook(ReadOnlySummonersBook addressBook, Path filePath) throws IOException;
+    void saveSummonersBook(ReadOnlySummonersBook summonersBook, Path filePath) throws IOException;
 
 }

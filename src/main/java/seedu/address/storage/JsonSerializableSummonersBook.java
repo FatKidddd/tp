@@ -46,15 +46,15 @@ class JsonSerializableSummonersBook {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public SummonersBook toModelType() throws IllegalValueException {
-        SummonersBook addressBook = new SummonersBook();
+        SummonersBook summonersBook = new SummonersBook();
         for (JsonAdaptedPlayer jsonAdaptedPlayer : players) {
             Player player = jsonAdaptedPlayer.toModelType();
-            if (addressBook.hasPlayer(player)) {
+            if (summonersBook.hasPlayer(player)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PLAYER);
             }
-            addressBook.addPlayer(player);
+            summonersBook.addPlayer(player);
         }
-        return addressBook;
+        return summonersBook;
     }
 
 }

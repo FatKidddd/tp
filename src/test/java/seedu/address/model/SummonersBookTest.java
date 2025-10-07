@@ -24,23 +24,23 @@ import seedu.address.testutil.PlayerBuilder;
 
 public class SummonersBookTest {
 
-    private final SummonersBook addressBook = new SummonersBook();
+    private final SummonersBook summonersBook = new SummonersBook();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPlayerList());
+        assertEquals(Collections.emptyList(), summonersBook.getPlayerList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> summonersBook.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlySummonersBook_replacesData() {
         SummonersBook newData = getTypicalSummonersBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+        summonersBook.resetData(newData);
+        assertEquals(newData, summonersBook);
     }
 
     @Test
@@ -51,42 +51,42 @@ public class SummonersBookTest {
         List<Player> newPlayers = Arrays.asList(ALICE, editedAlice);
         SummonersBookStub newData = new SummonersBookStub(newPlayers);
 
-        assertThrows(DuplicatePlayerException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicatePlayerException.class, () -> summonersBook.resetData(newData));
     }
 
     @Test
     public void hasPlayer_nullPlayer_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPlayer(null));
+        assertThrows(NullPointerException.class, () -> summonersBook.hasPlayer(null));
     }
 
     @Test
     public void hasPlayer_playerNotInSummonersBook_returnsFalse() {
-        assertFalse(addressBook.hasPlayer(ALICE));
+        assertFalse(summonersBook.hasPlayer(ALICE));
     }
 
     @Test
     public void hasPlayer_playerInSummonersBook_returnsTrue() {
-        addressBook.addPlayer(ALICE);
-        assertTrue(addressBook.hasPlayer(ALICE));
+        summonersBook.addPlayer(ALICE);
+        assertTrue(summonersBook.hasPlayer(ALICE));
     }
 
     @Test
     public void hasPlayer_playerWithSameIdentityFieldsInSummonersBook_returnsTrue() {
-        addressBook.addPlayer(ALICE);
+        summonersBook.addPlayer(ALICE);
         Player editedAlice = new PlayerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPlayer(editedAlice));
+        assertTrue(summonersBook.hasPlayer(editedAlice));
     }
 
     @Test
     public void getPlayerList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPlayerList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> summonersBook.getPlayerList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = SummonersBook.class.getCanonicalName() + "{players=" + addressBook.getPlayerList() + "}";
-        assertEquals(expected, addressBook.toString());
+        String expected = SummonersBook.class.getCanonicalName() + "{players=" + summonersBook.getPlayerList() + "}";
+        assertEquals(expected, summonersBook.toString());
     }
 
     /**

@@ -57,8 +57,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        SummonersBookStorage addressBookStorage = new JsonSummonersBookStorage(userPrefs.getSummonersBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        SummonersBookStorage summonersBookStorage = new JsonSummonersBookStorage(userPrefs.getSummonersBookFilePath());
+        storage = new StorageManager(summonersBookStorage, userPrefsStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -75,15 +75,15 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         logger.info("Using data file : " + storage.getSummonersBookFilePath());
 
-        Optional<ReadOnlySummonersBook> addressBookOptional;
+        Optional<ReadOnlySummonersBook> summonersBookOptional;
         ReadOnlySummonersBook initialData;
         try {
-            addressBookOptional = storage.readSummonersBook();
-            if (!addressBookOptional.isPresent()) {
+            summonersBookOptional = storage.readSummonersBook();
+            if (!summonersBookOptional.isPresent()) {
                 logger.info("Creating a new data file " + storage.getSummonersBookFilePath()
                         + " populated with a sample SummonersBook.");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleSummonersBook);
+            initialData = summonersBookOptional.orElseGet(SampleDataUtil::getSampleSummonersBook);
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getSummonersBookFilePath() + " could not be loaded."
                     + " Will be starting with an empty SummonersBook.");

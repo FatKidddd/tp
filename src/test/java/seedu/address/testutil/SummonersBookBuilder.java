@@ -10,25 +10,25 @@ import seedu.address.model.player.Player;
  */
 public class SummonersBookBuilder {
 
-    private SummonersBook addressBook;
+    private SummonersBook summonersBook;
 
     public SummonersBookBuilder() {
-        addressBook = new SummonersBook();
+        summonersBook = new SummonersBook();
     }
 
-    public SummonersBookBuilder(SummonersBook addressBook) {
-        this.addressBook = addressBook;
+    public SummonersBookBuilder(SummonersBook summonersBook) {
+        this.summonersBook = summonersBook;
     }
 
     /**
      * Adds a new {@code Player} to the {@code SummonersBook} that we are building.
      */
     public SummonersBookBuilder withPlayer(Player player) {
-        addressBook.addPlayer(player);
+        summonersBook.addPlayer(player);
         return this;
     }
 
     public SummonersBook build() {
-        return addressBook;
+        return summonersBook;
     }
 }

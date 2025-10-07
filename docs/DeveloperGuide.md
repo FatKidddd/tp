@@ -162,7 +162,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedSummonersBook`. It extends `SummonersBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedSummonersBook`. It extends `SummonersBook` with an undo/redo history, stored internally as an `summonersBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 * `VersionedSummonersBook#commit()` — Saves the current address book state in its history.
 * `VersionedSummonersBook#undo()` — Restores the previous address book state from its history.
@@ -176,17 +176,17 @@ Step 1. The user launches the application for the first time. The `VersionedSumm
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th player in the address book. The `delete` command calls `Model#commitSummonersBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th player in the address book. The `delete` command calls `Model#commitSummonersBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `summonersBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new player. The `add` command also calls `Model#commitSummonersBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new player. The `add` command also calls `Model#commitSummonersBook()`, causing another modified address book state to be saved into the `summonersBookStateList`.
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
 <box type="info" seamless>
 
-**Note:** If a command fails its execution, it will not call `Model#commitSummonersBook()`, so the address book state will not be saved into the `addressBookStateList`.
+**Note:** If a command fails its execution, it will not call `Model#commitSummonersBook()`, so the address book state will not be saved into the `summonersBookStateList`.
 
 </box>
 
@@ -220,15 +220,15 @@ The `redo` command does the opposite — it calls `Model#redoSummonersBook()
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone SummonersBook states to restore. The `redo` command uses `Model#canRedoSummonersBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+**Note:** If the `currentStatePointer` is at index `summonersBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone SummonersBook states to restore. The `redo` command uses `Model#canRedoSummonersBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </box>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitSummonersBook()`, `Model#undoSummonersBook()` or `Model#redoSummonersBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitSummonersBook()`, `Model#undoSummonersBook()` or `Model#redoSummonersBook()`. Thus, the `summonersBookStateList` remains unchanged.
 
 <puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
 
-Step 6. The user executes `clear`, which calls `Model#commitSummonersBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitSummonersBook()`. Since the `currentStatePointer` is not pointing at the end of the `summonersBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 <puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 

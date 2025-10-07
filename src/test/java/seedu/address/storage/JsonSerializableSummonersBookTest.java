@@ -24,9 +24,9 @@ public class JsonSerializableSummonersBookTest {
     public void toModelType_typicalPlayersFile_success() throws Exception {
         JsonSerializableSummonersBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PLAYERS_FILE,
                 JsonSerializableSummonersBook.class).get();
-        SummonersBook addressBookFromFile = dataFromFile.toModelType();
+        SummonersBook summonersBookFromFile = dataFromFile.toModelType();
         SummonersBook typicalPlayersSummonersBook = TypicalPlayers.getTypicalSummonersBook();
-        assertEquals(addressBookFromFile, typicalPlayersSummonersBook);
+        assertEquals(summonersBookFromFile, typicalPlayersSummonersBook);
     }
 
     @Test

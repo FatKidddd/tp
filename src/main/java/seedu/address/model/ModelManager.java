@@ -19,21 +19,21 @@ import seedu.address.model.player.Player;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final SummonersBook addressBook;
+    private final SummonersBook summonersBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Player> filteredPlayers;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given summonersBook and userPrefs.
      */
-    public ModelManager(ReadOnlySummonersBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlySummonersBook summonersBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(summonersBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + summonersBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new SummonersBook(addressBook);
+        this.summonersBook = new SummonersBook(summonersBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPlayers = new FilteredList<>(this.addressBook.getPlayerList());
+        filteredPlayers = new FilteredList<>(this.summonersBook.getPlayerList());
     }
 
     public ModelManager() {
@@ -70,37 +70,37 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setSummonersBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setSummonersBookFilePath(addressBookFilePath);
+    public void setSummonersBookFilePath(Path summonersBookFilePath) {
+        requireNonNull(summonersBookFilePath);
+        userPrefs.setSummonersBookFilePath(summonersBookFilePath);
     }
 
     //=========== SummonersBook ================================================================================
 
     @Override
-    public void setSummonersBook(ReadOnlySummonersBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setSummonersBook(ReadOnlySummonersBook summonersBook) {
+        this.summonersBook.resetData(summonersBook);
     }
 
     @Override
     public ReadOnlySummonersBook getSummonersBook() {
-        return addressBook;
+        return summonersBook;
     }
 
     @Override
     public boolean hasPlayer(Player player) {
         requireNonNull(player);
-        return addressBook.hasPlayer(player);
+        return summonersBook.hasPlayer(player);
     }
 
     @Override
     public void deletePlayer(Player target) {
-        addressBook.removePlayer(target);
+        summonersBook.removePlayer(target);
     }
 
     @Override
     public void addPlayer(Player player) {
-        addressBook.addPlayer(player);
+        summonersBook.addPlayer(player);
         updateFilteredPlayerList(PREDICATE_SHOW_ALL_PLAYERS);
     }
 
@@ -108,7 +108,7 @@ public class ModelManager implements Model {
     public void setPlayer(Player target, Player editedPlayer) {
         requireAllNonNull(target, editedPlayer);
 
-        addressBook.setPlayer(target, editedPlayer);
+        summonersBook.setPlayer(target, editedPlayer);
     }
 
     //=========== Filtered Player List Accessors =============================================================
@@ -140,7 +140,7 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return addressBook.equals(otherModelManager.addressBook)
+        return summonersBook.equals(otherModelManager.summonersBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPlayers.equals(otherModelManager.filteredPlayers);
     }

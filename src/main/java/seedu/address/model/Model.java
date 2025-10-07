@@ -42,12 +42,12 @@ public interface Model {
     /**
      * Sets the user prefs' address book file path.
      */
-    void setSummonersBookFilePath(Path addressBookFilePath);
+    void setSummonersBookFilePath(Path summonersBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code summonersBook}.
      */
-    void setSummonersBook(ReadOnlySummonersBook addressBook);
+    void setSummonersBook(ReadOnlySummonersBook summonersBook);
 
     /** Returns the SummonersBook */
     ReadOnlySummonersBook getSummonersBook();

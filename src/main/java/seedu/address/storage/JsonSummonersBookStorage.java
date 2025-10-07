@@ -60,8 +60,8 @@ public class JsonSummonersBookStorage implements SummonersBookStorage {
     }
 
     @Override
-    public void saveSummonersBook(ReadOnlySummonersBook addressBook) throws IOException {
-        saveSummonersBook(addressBook, filePath);
+    public void saveSummonersBook(ReadOnlySummonersBook summonersBook) throws IOException {
+        saveSummonersBook(summonersBook, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonSummonersBookStorage implements SummonersBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveSummonersBook(ReadOnlySummonersBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveSummonersBook(ReadOnlySummonersBook summonersBook, Path filePath) throws IOException {
+        requireNonNull(summonersBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableSummonersBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableSummonersBook(summonersBook), filePath);
     }
 
 }
