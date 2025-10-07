@@ -4,7 +4,7 @@ import seedu.address.model.SummonersBook;
 import seedu.address.model.player.Player;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building SummonersBook objects.
  * Example usage: <br>
  *     {@code SummonersBook ab = new SummonersBookBuilder().withPlayer("John", "Doe").build();}
  */
