@@ -22,7 +22,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Player;
+import seedu.address.model.player.Player;
 import seedu.address.testutil.PlayerBuilder;
 
 public class AddCommandTest {
@@ -33,7 +33,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_playerAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPlayerAdded modelStub = new ModelStubAcceptingPlayerAdded();
         Player validPlayer = new PlayerBuilder().build();
 
@@ -41,7 +41,7 @@ public class AddCommandTest {
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPlayer)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPlayer), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validPlayer), modelStub.playersAdded);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPlayer);
         ModelStub modelStub = new ModelStubWithPlayer(validPlayer);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_player, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different player -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -119,7 +119,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPlayer(Player person) {
+        public void addPlayer(Player player) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -134,7 +134,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPlayer(Player person) {
+        public boolean hasPlayer(Player player) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -160,39 +160,39 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single player.
      */
     private class ModelStubWithPlayer extends ModelStub {
-        private final Player person;
+        private final Player player;
 
-        ModelStubWithPlayer(Player person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithPlayer(Player player) {
+            requireNonNull(player);
+            this.player = player;
         }
 
         @Override
-        public boolean hasPlayer(Player person) {
-            requireNonNull(person);
-            return this.person.isSamePlayer(person);
+        public boolean hasPlayer(Player player) {
+            requireNonNull(player);
+            return this.player.isSamePlayer(player);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the player being added.
      */
     private class ModelStubAcceptingPlayerAdded extends ModelStub {
-        final ArrayList<Player> personsAdded = new ArrayList<>();
+        final ArrayList<Player> playersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPlayer(Player person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePlayer);
+        public boolean hasPlayer(Player player) {
+            requireNonNull(player);
+            return playersAdded.stream().anyMatch(player::isSamePlayer);
         }
 
         @Override
-        public void addPlayer(Player person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addPlayer(Player player) {
+            requireNonNull(player);
+            playersAdded.add(player);
         }
 
         @Override

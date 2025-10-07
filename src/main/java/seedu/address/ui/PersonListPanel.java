@@ -8,25 +8,25 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Player;
+import seedu.address.model.player.Player;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of players.
  */
 public class PlayerListPanel extends UiPart<Region> {
     private static final String FXML = "PlayerListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PlayerListPanel.class);
 
     @FXML
-    private ListView<Player> personListView;
+    private ListView<Player> playerListView;
 
     /**
      * Creates a {@code PlayerListPanel} with the given {@code ObservableList}.
      */
-    public PlayerListPanel(ObservableList<Player> personList) {
+    public PlayerListPanel(ObservableList<Player> playerList) {
         super(FXML);
-        personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PlayerListViewCell());
+        playerListView.setItems(playerList);
+        playerListView.setCellFactory(listView -> new PlayerListViewCell());
     }
 
     /**
@@ -34,14 +34,14 @@ public class PlayerListPanel extends UiPart<Region> {
      */
     class PlayerListViewCell extends ListCell<Player> {
         @Override
-        protected void updateItem(Player person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Player player, boolean empty) {
+            super.updateItem(player, empty);
 
-            if (empty || person == null) {
+            if (empty || player == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PlayerCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PlayerCard(player, getIndex() + 1).getRoot());
             }
         }
     }

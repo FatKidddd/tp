@@ -10,7 +10,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPlayerDescriptor;
-import seedu.address.model.person.Player;
+import seedu.address.model.player.Player;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,22 +19,22 @@ import seedu.address.model.tag.Tag;
 public class PlayerUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code player}.
      */
-    public static String getAddCommand(Player person) {
-        return AddCommand.COMMAND_WORD + " " + getPlayerDetails(person);
+    public static String getAddCommand(Player player) {
+        return AddCommand.COMMAND_WORD + " " + getPlayerDetails(player);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code player}'s details.
      */
-    public static String getPlayerDetails(Player person) {
+    public static String getPlayerDetails(Player player) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + person.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + person.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        person.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + player.getName().fullName + " ");
+        sb.append(PREFIX_PHONE + player.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + player.getEmail().value + " ");
+        sb.append(PREFIX_ADDRESS + player.getAddress().value + " ");
+        player.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

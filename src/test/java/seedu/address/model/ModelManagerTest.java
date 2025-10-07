@@ -3,7 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_playerS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPlayers.ALICE;
 import static seedu.address.testutil.TypicalPlayers.BENSON;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.player.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPlayer_personNotInAddressBook_returnsFalse() {
+    public void hasPlayer_playerNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasPlayer(ALICE));
     }
 
     @Test
-    public void hasPlayer_personInAddressBook_returnsTrue() {
+    public void hasPlayer_playerInAddressBook_returnsTrue() {
         modelManager.addPlayer(ALICE);
         assertTrue(modelManager.hasPlayer(ALICE));
     }
@@ -122,7 +122,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPlayerList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredPlayerList(PREDICATE_SHOW_ALL_playerS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

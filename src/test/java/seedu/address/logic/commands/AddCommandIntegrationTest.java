@@ -11,7 +11,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Player;
+import seedu.address.model.player.Player;
 import seedu.address.testutil.PlayerBuilder;
 
 /**
@@ -40,9 +40,9 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePlayer_throwsCommandException() {
-        Player personInList = model.getAddressBook().getPlayerList().get(0);
-        assertCommandFailure(new AddCommand(personInList), model,
-                AddCommand.MESSAGE_DUPLICATE_PERSON);
+        Player playerInList = model.getAddressBook().getPlayerList().get(0);
+        assertCommandFailure(new AddCommand(playerInList), model,
+                AddCommand.MESSAGE_DUPLICATE_player);
     }
 
 }

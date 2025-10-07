@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Player;
+import seedu.address.model.player.Player;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -88,9 +88,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPlayer(Player person) {
-        requireNonNull(person);
-        return addressBook.hasPlayer(person);
+    public boolean hasPlayer(Player player) {
+        requireNonNull(player);
+        return addressBook.hasPlayer(player);
     }
 
     @Override
@@ -99,9 +99,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPlayer(Player person) {
-        addressBook.addPlayer(person);
-        updateFilteredPlayerList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addPlayer(Player player) {
+        addressBook.addPlayer(player);
+        updateFilteredPlayerList(PREDICATE_SHOW_ALL_playerS);
     }
 
     @Override

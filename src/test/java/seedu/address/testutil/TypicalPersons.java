@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.Player;
+import seedu.address.model.player.Player;
 
 /**
  * A utility class containing a list of {@code Player} objects to be used in tests.
@@ -60,12 +60,12 @@ public class TypicalPlayers {
     private TypicalPlayers() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code AddressBook} with all the typical players.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Player person : getTypicalPlayers()) {
-            ab.addPlayer(person);
+        for (Player player : getTypicalPlayers()) {
+            ab.addPlayer(player);
         }
         return ab;
     }

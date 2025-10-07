@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.player;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -62,8 +62,8 @@ public class Player {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both players have the same name.
+     * This defines a weaker notion of equality between two players.
      */
     public boolean isSamePlayer(Player otherPlayer) {
         if (otherPlayer == this) {
@@ -75,8 +75,8 @@ public class Player {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both players have the same identity and data fields.
+     * This defines a stronger notion of equality between two players.
      */
     @Override
     public boolean equals(Object other) {

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Player;
+import seedu.address.model.player.Player;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,16 +19,16 @@ import seedu.address.model.person.Player;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Players list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_player = "Players list contains duplicate player(s).";
 
-    private final List<JsonAdaptedPlayer> persons = new ArrayList<>();
+    private final List<JsonAdaptedPlayer> players = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given players.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPlayer> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("players") List<JsonAdaptedPlayer> players) {
+        this.players.addAll(players);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPlayerList().stream().map(JsonAdaptedPlayer::new).collect(Collectors.toList()));
+        players.addAll(source.getPlayerList().stream().map(JsonAdaptedPlayer::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPlayer jsonAdaptedPlayer : persons) {
-            Player person = jsonAdaptedPlayer.toModelType();
-            if (addressBook.hasPlayer(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedPlayer jsonAdaptedPlayer : players) {
+            Player player = jsonAdaptedPlayer.toModelType();
+            if (addressBook.hasPlayer(player)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_player);
             }
-            addressBook.addPlayer(person);
+            addressBook.addPlayer(player);
         }
         return addressBook;
     }

@@ -11,16 +11,16 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Player;
+import seedu.address.model.player.Player;
 
 /**
- * Adds a person to the address book.
+ * Adds a player to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a player to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -35,17 +35,17 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New player added: %1$s";
+    public static final String MESSAGE_DUPLICATE_player = "This player already exists in the address book";
 
     private final Player toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Player}
      */
-    public AddCommand(Player person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Player player) {
+        requireNonNull(player);
+        toAdd = player;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPlayer(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_player);
         }
 
         model.addPlayer(toAdd);

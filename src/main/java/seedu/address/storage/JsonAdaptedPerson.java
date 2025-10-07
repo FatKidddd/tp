@@ -10,11 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Player;
-import seedu.address.model.person.Phone;
+import seedu.address.model.player.Address;
+import seedu.address.model.player.Email;
+import seedu.address.model.player.Name;
+import seedu.address.model.player.Player;
+import seedu.address.model.player.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,7 +31,7 @@ class JsonAdaptedPlayer {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPlayer} with the given person details.
+     * Constructs a {@code JsonAdaptedPlayer} with the given player details.
      */
     @JsonCreator
     public JsonAdaptedPlayer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -60,14 +60,14 @@ class JsonAdaptedPlayer {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Player} object.
+     * Converts this Jackson-friendly adapted player object into the model's {@code Player} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted player.
      */
     public Player toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> playerTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+            playerTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -102,7 +102,7 @@ class JsonAdaptedPlayer {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(playerTags);
         return new Player(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 

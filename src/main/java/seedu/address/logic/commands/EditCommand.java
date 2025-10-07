@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_playerS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -21,22 +21,22 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Player;
-import seedu.address.model.person.Phone;
+import seedu.address.model.player.Address;
+import seedu.address.model.player.Email;
+import seedu.address.model.player.Name;
+import seedu.address.model.player.Player;
+import seedu.address.model.player.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing player in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the player identified "
+            + "by the index number used in the displayed player list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -48,16 +48,16 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Player: %1$s";
+    public static final String MESSAGE_EDIT_player_SUCCESS = "Edited Player: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_player = "This player already exists in the address book.";
 
     private final Index index;
     private final EditPlayerDescriptor editPlayerDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPlayerDescriptor details to edit the person with
+     * @param index of the player in the filtered player list to edit
+     * @param editPlayerDescriptor details to edit the player with
      */
     public EditCommand(Index index, EditPlayerDescriptor editPlayerDescriptor) {
         requireNonNull(index);
@@ -73,33 +73,33 @@ public class EditCommand extends Command {
         List<Player> lastShownList = model.getFilteredPlayerList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_player_DISPLAYED_INDEX);
         }
 
-        Player personToEdit = lastShownList.get(index.getZeroBased());
-        Player editedPlayer = createEditedPlayer(personToEdit, editPlayerDescriptor);
+        Player playerToEdit = lastShownList.get(index.getZeroBased());
+        Player editedPlayer = createEditedPlayer(playerToEdit, editPlayerDescriptor);
 
-        if (!personToEdit.isSamePlayer(editedPlayer) && model.hasPlayer(editedPlayer)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!playerToEdit.isSamePlayer(editedPlayer) && model.hasPlayer(editedPlayer)) {
+            throw new CommandException(MESSAGE_DUPLICATE_player);
         }
 
-        model.setPlayer(personToEdit, editedPlayer);
-        model.updateFilteredPlayerList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPlayer)));
+        model.setPlayer(playerToEdit, editedPlayer);
+        model.updateFilteredPlayerList(PREDICATE_SHOW_ALL_playerS);
+        return new CommandResult(String.format(MESSAGE_EDIT_player_SUCCESS, Messages.format(editedPlayer)));
     }
 
     /**
-     * Creates and returns a {@code Player} with the details of {@code personToEdit}
+     * Creates and returns a {@code Player} with the details of {@code playerToEdit}
      * edited with {@code editPlayerDescriptor}.
      */
-    private static Player createEditedPlayer(Player personToEdit, EditPlayerDescriptor editPlayerDescriptor) {
-        assert personToEdit != null;
+    private static Player createEditedPlayer(Player playerToEdit, EditPlayerDescriptor editPlayerDescriptor) {
+        assert playerToEdit != null;
 
-        Name updatedName = editPlayerDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPlayerDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPlayerDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPlayerDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPlayerDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPlayerDescriptor.getName().orElse(playerToEdit.getName());
+        Phone updatedPhone = editPlayerDescriptor.getPhone().orElse(playerToEdit.getPhone());
+        Email updatedEmail = editPlayerDescriptor.getEmail().orElse(playerToEdit.getEmail());
+        Address updatedAddress = editPlayerDescriptor.getAddress().orElse(playerToEdit.getAddress());
+        Set<Tag> updatedTags = editPlayerDescriptor.getTags().orElse(playerToEdit.getTags());
 
         return new Player(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -129,8 +129,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the player with. Each non-empty field value will replace the
+     * corresponding field value of the player.
      */
     public static class EditPlayerDescriptor {
         private Name name;

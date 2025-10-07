@@ -1,4 +1,4 @@
-package seedu.address.model.person.exceptions;
+package seedu.address.model.player.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Players (Players are considered duplicates if they have the same
@@ -6,6 +6,6 @@ package seedu.address.model.person.exceptions;
  */
 public class DuplicatePlayerException extends RuntimeException {
     public DuplicatePlayerException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate players");
     }
 }

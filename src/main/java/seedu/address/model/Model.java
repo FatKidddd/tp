@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Player;
+import seedu.address.model.player.Player;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Player> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Player> PREDICATE_SHOW_ALL_playerS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,34 +53,34 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a player with the same identity as {@code player} exists in the address book.
      */
-    boolean hasPlayer(Player person);
+    boolean hasPlayer(Player player);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given player.
+     * The player must exist in the address book.
      */
     void deletePlayer(Player target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given player.
+     * {@code player} must not already exist in the address book.
      */
-    void addPlayer(Player person);
+    void addPlayer(Player player);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPlayer}.
+     * Replaces the given player {@code target} with {@code editedPlayer}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPlayer} must not be the same as another existing person in the address book.
+     * The player identity of {@code editedPlayer} must not be the same as another existing player in the address book.
      */
     void setPlayer(Player target, Player editedPlayer);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered player list */
     ObservableList<Player> getFilteredPlayerList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered player list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPlayerList(Predicate<Player> predicate);

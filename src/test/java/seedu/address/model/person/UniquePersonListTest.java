@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.player;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.DuplicatePlayerException;
-import seedu.address.model.person.exceptions.PlayerNotFoundException;
+import seedu.address.model.player.exceptions.DuplicatePlayerException;
+import seedu.address.model.player.exceptions.PlayerNotFoundException;
 import seedu.address.testutil.PlayerBuilder;
 
 public class UniquePlayerListTest {
@@ -29,18 +29,18 @@ public class UniquePlayerListTest {
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
+    public void contains_playerNotInList_returnsFalse() {
         assertFalse(uniquePlayerList.contains(ALICE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_playerInList_returnsTrue() {
         uniquePlayerList.add(ALICE);
         assertTrue(uniquePlayerList.contains(ALICE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_playerWithSameIdentityFieldsInList_returnsTrue() {
         uniquePlayerList.add(ALICE);
         Player editedAlice = new PlayerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -115,7 +115,7 @@ public class UniquePlayerListTest {
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPlayerNotFoundException() {
+    public void remove_playerDoesNotExist_throwsPlayerNotFoundException() {
         assertThrows(PlayerNotFoundException.class, () -> uniquePlayerList.remove(ALICE));
     }
 
@@ -149,8 +149,8 @@ public class UniquePlayerListTest {
     @Test
     public void setPlayers_list_replacesOwnListWithProvidedList() {
         uniquePlayerList.add(ALICE);
-        List<Player> personList = Collections.singletonList(BOB);
-        uniquePlayerList.setPlayers(personList);
+        List<Player> playerList = Collections.singletonList(BOB);
+        uniquePlayerList.setPlayers(playerList);
         UniquePlayerList expectedUniquePlayerList = new UniquePlayerList();
         expectedUniquePlayerList.add(BOB);
         assertEquals(expectedUniquePlayerList, uniquePlayerList);

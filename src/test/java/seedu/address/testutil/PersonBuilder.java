@@ -3,11 +3,11 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Player;
-import seedu.address.model.person.Phone;
+import seedu.address.model.player.Address;
+import seedu.address.model.player.Email;
+import seedu.address.model.player.Name;
+import seedu.address.model.player.Player;
+import seedu.address.model.player.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -39,14 +39,14 @@ public class PlayerBuilder {
     }
 
     /**
-     * Initializes the PlayerBuilder with the data of {@code personToCopy}.
+     * Initializes the PlayerBuilder with the data of {@code playerToCopy}.
      */
-    public PlayerBuilder(Player personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+    public PlayerBuilder(Player playerToCopy) {
+        name = playerToCopy.getName();
+        phone = playerToCopy.getPhone();
+        email = playerToCopy.getEmail();
+        address = playerToCopy.getAddress();
+        tags = new HashSet<>(playerToCopy.getTags());
     }
 
     /**

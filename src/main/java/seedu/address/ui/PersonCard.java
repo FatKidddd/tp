@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Player;
+import seedu.address.model.player.Player;
 
 /**
  * An UI component that displays information of a {@code Player}.
@@ -24,7 +24,7 @@ public class PlayerCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Player person;
+    public final Player player;
 
     @FXML
     private HBox cardPane;
@@ -44,15 +44,15 @@ public class PlayerCard extends UiPart<Region> {
     /**
      * Creates a {@code PlayerCode} with the given {@code Player} and index to display.
      */
-    public PlayerCard(Player person, int displayedIndex) {
+    public PlayerCard(Player player, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.player = player;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        name.setText(player.getName().fullName);
+        phone.setText(player.getPhone().value);
+        address.setText(player.getAddress().value);
+        email.setText(player.getEmail().value);
+        player.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }

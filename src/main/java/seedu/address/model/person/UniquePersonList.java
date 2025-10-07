@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.player;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,15 +8,15 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePlayerException;
-import seedu.address.model.person.exceptions.PlayerNotFoundException;
+import seedu.address.model.player.exceptions.DuplicatePlayerException;
+import seedu.address.model.player.exceptions.PlayerNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Player#isSamePlayer(Player)}. As such, adding and updating of
- * persons uses Player#isSamePlayer(Player) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePlayerList. However, the removal of a person uses Player#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of players that enforces uniqueness between its elements and does not allow nulls.
+ * A player is considered unique by comparing using {@code Player#isSamePlayer(Player)}. As such, adding and updating of
+ * players uses Player#isSamePlayer(Player) for equality so as to ensure that the player being added or updated is
+ * unique in terms of identity in the UniquePlayerList. However, the removal of a player uses Player#equals(Object) so
+ * as to ensure that the player with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -29,7 +29,7 @@ public class UniquePlayerList implements Iterable<Player> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent player as the given argument.
      */
     public boolean contains(Player toCheck) {
         requireNonNull(toCheck);
@@ -37,8 +37,8 @@ public class UniquePlayerList implements Iterable<Player> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a player to the list.
+     * The player must not already exist in the list.
      */
     public void add(Player toAdd) {
         requireNonNull(toAdd);
@@ -49,9 +49,9 @@ public class UniquePlayerList implements Iterable<Player> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPlayer}.
+     * Replaces the player {@code target} in the list with {@code editedPlayer}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPlayer} must not be the same as another existing person in the list.
+     * The player identity of {@code editedPlayer} must not be the same as another existing player in the list.
      */
     public void setPlayer(Player target, Player editedPlayer) {
         requireAllNonNull(target, editedPlayer);
@@ -69,8 +69,8 @@ public class UniquePlayerList implements Iterable<Player> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent player from the list.
+     * The player must exist in the list.
      */
     public void remove(Player toRemove) {
         requireNonNull(toRemove);
@@ -85,16 +85,16 @@ public class UniquePlayerList implements Iterable<Player> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code players}.
+     * {@code players} must not contain duplicate players.
      */
-    public void setPlayers(List<Player> persons) {
-        requireAllNonNull(persons);
-        if (!personsAreUnique(persons)) {
+    public void setPlayers(List<Player> players) {
+        requireAllNonNull(players);
+        if (!playersAreUnique(players)) {
             throw new DuplicatePlayerException();
         }
 
-        internalList.setAll(persons);
+        internalList.setAll(players);
     }
 
     /**
@@ -135,12 +135,12 @@ public class UniquePlayerList implements Iterable<Player> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code players} contains only unique players.
      */
-    private boolean personsAreUnique(List<Player> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSamePlayer(persons.get(j))) {
+    private boolean playersAreUnique(List<Player> players) {
+        for (int i = 0; i < players.size() - 1; i++) {
+            for (int j = i + 1; j < players.size(); j++) {
+                if (players.get(i).isSamePlayer(players.get(j))) {
                     return false;
                 }
             }

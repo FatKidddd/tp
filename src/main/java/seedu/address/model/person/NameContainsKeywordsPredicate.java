@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.player;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -17,9 +17,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Player> {
     }
 
     @Override
-    public boolean test(Player person) {
+    public boolean test(Player player) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(player.getName().fullName, keyword));
     }
 
     @Override

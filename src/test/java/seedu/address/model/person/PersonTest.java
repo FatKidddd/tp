@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.player;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -20,8 +20,8 @@ public class PlayerTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Player person = new PlayerBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Player player = new PlayerBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> player.getTags().remove(0));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class PlayerTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different player -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false

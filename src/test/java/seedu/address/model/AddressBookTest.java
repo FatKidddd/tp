@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Player;
-import seedu.address.model.person.exceptions.DuplicatePlayerException;
+import seedu.address.model.player.Player;
+import seedu.address.model.player.exceptions.DuplicatePlayerException;
 import seedu.address.testutil.PlayerBuilder;
 
 public class AddressBookTest {
@@ -45,7 +45,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withDuplicatePlayers_throwsDuplicatePlayerException() {
-        // Two persons with the same identity fields
+        // Two players with the same identity fields
         Player editedAlice = new PlayerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Player> newPlayers = Arrays.asList(ALICE, editedAlice);
@@ -60,18 +60,18 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPlayer_personNotInAddressBook_returnsFalse() {
+    public void hasPlayer_playerNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPlayer(ALICE));
     }
 
     @Test
-    public void hasPlayer_personInAddressBook_returnsTrue() {
+    public void hasPlayer_playerInAddressBook_returnsTrue() {
         addressBook.addPlayer(ALICE);
         assertTrue(addressBook.hasPlayer(ALICE));
     }
 
     @Test
-    public void hasPlayer_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPlayer_playerWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPlayer(ALICE);
         Player editedAlice = new PlayerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -85,23 +85,23 @@ public class AddressBookTest {
 
     @Test
     public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPlayerList() + "}";
+        String expected = AddressBook.class.getCanonicalName() + "{players=" + addressBook.getPlayerList() + "}";
         assertEquals(expected, addressBook.toString());
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose players list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Player> persons = FXCollections.observableArrayList();
+        private final ObservableList<Player> players = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Player> persons) {
-            this.persons.setAll(persons);
+        AddressBookStub(Collection<Player> players) {
+            this.players.setAll(players);
         }
 
         @Override
         public ObservableList<Player> getPlayerList() {
-            return persons;
+            return players;
         }
     }
 
